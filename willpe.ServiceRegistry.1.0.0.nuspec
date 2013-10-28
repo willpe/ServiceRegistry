@@ -14,6 +14,6 @@
         <copyright>Copyrigt 2013 Will Perry, Microsoft</copyright>
     </metadata>
     <files>
-        <file src="bin\Debug\ServiceRegistry.dll" target="lib\ServiceRegistry.dll" />
+        <file src="bin\Release\ServiceRegistry.dll" target="lib\ServiceRegistry.dll" />
     </files>
 </package>
