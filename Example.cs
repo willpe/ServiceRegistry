@@ -15,7 +15,7 @@
 //   limitations under the License.
 // </copyright>
 // ------------------------------------------------------------------------------------------------
-namespace Microsoft.Utils
+namespace WillPe.Utils
 {
     using System;
     using System.Collections.Generic;
