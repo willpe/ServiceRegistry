@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<!-- Service Registry Configuration
+         Configuration for a simple dependency injection, ServiceRegistry -->
+<serviceRegistry>
+  <bindings>
+
+    <clear />
+
+    <add abstract="System.IO.Stream"
+         concrete="System.IO.MemoryStream" />
+
+  </bindings>
+</serviceRegistry>

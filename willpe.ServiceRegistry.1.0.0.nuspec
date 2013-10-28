@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>willpe.ServiceRegistry</id>
+        <version>1.0.0</version>
+        <title>Service Registry</title>
+        <authors>Will Perry</authors>
+        <owners>willpe@microsoft.com</owners>
+        <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+        <projectUrl>http://github.com/willpe/serviceregistry</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>A simple dependency injection helper for .Net</description>
+        <summary>A simple dependency injection helper for .Net</summary>
+        <copyright>Copyrigt 2013 Will Perry, Microsoft</copyright>
+    </metadata>
+    <files>
+        <file src="bin\Debug\ServiceRegistry.dll" target="lib\ServiceRegistry.dll" />
+    </files>
+</package>
