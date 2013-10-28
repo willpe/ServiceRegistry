@@ -13,9 +13,9 @@ Service Registry allows you to more loosely-couple your applications by binding 
   - Support for detailed logging with ETW Events
   - Can call non-default constructors on types.
 
-#### Terminiology
+#### Terminology
 
-If you have an interface, `IComponent` which a type `SomeComponent` implements, then you can **Bind** `SomeComponent` as the **Concrete** implmentation for **Abstract** type, `IComponent`. Later, you can **Get** an instance of `SomeComponent` using the Service Registry.
+If you have an interface, `IComponent` which a type `SomeComponent` implements, then you can **Bind** `SomeComponent` as the **Concrete** implementation for **Abstract** type, `IComponent`. Later, you can **Get** an instance of `SomeComponent` using the Service Registry.
 
 Get it
 ------
@@ -23,6 +23,8 @@ Get it
 Install from [NuGet](https://www.nuget.org/packages/willpe.ServiceRegistry):
 
     PM> Install-Package willpe.ServiceRegistry
+
+Or [Download](https://github.com/willpe/ServiceRegistry/releases/latest) the latest release as a zip file.
 
 Use it
 ------
