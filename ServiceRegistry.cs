@@ -482,7 +482,7 @@ namespace WillPe.Utils
             }
         }
 
-        [EventSource(Name = "DaylightServiceRegistry")]
+        [EventSource(Name = "ServiceRegistry")]
         private sealed class ServiceRegistryEventSource : EventSource
         {
             [Event(5, Message = "Cannot find a binding for requested abstract type '{0}'.", Level = EventLevel.Warning)]
