@@ -137,3 +137,8 @@ private class ConsoleEventListener : EventListener
     }
 }
 ````
+
+
+## Revision History
+
+  - 1.1.0: Added `TryGet(...)` and `Find(...)` methods to more easily allow consumers to fallback if bindings are not found

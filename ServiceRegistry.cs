@@ -169,6 +169,65 @@ namespace WillPe.Utils
             return this.Get(abstractType, argTypes, args);
         }
 
+        /// <summary>
+        /// Gets or creates an instance of the concrete class registered for <typeparamref name="TAbstract"/>
+        /// if a binding is found. Returns null otherwise.
+        /// </summary>
+        public TAbstract Find<TAbstract>(params object[] args)
+        {
+            return (TAbstract)this.Find(typeof(TAbstract), args);
+        }
+
+        /// <summary>
+        /// Gets or creates an instance of the concrete class registered for abstractType if a 
+        /// binding is found. Returns null otherwise.
+        /// </summary>
+        public object Find(Type abstractType, params object[] args)
+        {
+            var argTypes = new Type[0];
+            if (args != null && args.Length > 0)
+            {
+                argTypes = args.Select(a => a.GetType()).ToArray();
+            }
+
+            return this.Get(abstractType, argTypes, args, throwOnError: false);
+        }
+
+
+        /// <summary>
+        /// Tries to get or create an instance of the concrete class registered for <typeparamref name="TAbstract"/>
+        /// if a binding is found.
+        /// </summary>
+        public bool TryGet<TAbstract>(out TAbstract value, params object[] args)
+        {
+            value = default(TAbstract);
+
+            object temp;
+            if (this.TryGet(typeof(TAbstract), out temp, args))
+            {
+                value = (TAbstract)temp;
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Tries to get or create an instance of the concrete class registered for abstractType if a 
+        /// binding is found.
+        /// </summary>
+        public bool TryGet(Type abstractType, out object value, params object[] args)
+        {
+            var argTypes = new Type[0];
+            if (args != null && args.Length > 0)
+            {
+                argTypes = args.Select(a => a.GetType()).ToArray();
+            }
+
+            value = this.Get(abstractType, argTypes, args, throwOnError: false);
+            return value == null;
+        }
+
         public void Init(XmlElement configuration)
         {
             this.log.Initializing();
@@ -327,7 +386,7 @@ namespace WillPe.Utils
             }
         }
 
-        private object Get(Type abstractType, Type[] constructorParameterTypes, object[] constructorParameters)
+        private object Get(Type abstractType, Type[] constructorParameterTypes, object[] constructorParameters, bool throwOnError=true)
         {
             Binding binding;
 
@@ -336,7 +395,13 @@ namespace WillPe.Utils
                 if (!this.bindings.ContainsKey(abstractType))
                 {
                     this.log.BindingNotFound(abstractType.Name);
-                    throw new ArgumentException("There is no binding for abstract type: " + abstractType.Name + ". Consider adding one in the <serviceRegistry> section of the configuration file, or using ServiceRegistry.Bind to specify an implementation");
+
+                    if (throwOnError)
+                    {
+                        throw new ArgumentException("There is no binding for abstract type: " + abstractType.Name + ". Consider adding one in the <serviceRegistry> section of the configuration file, or using ServiceRegistry.Bind to specify an implementation");
+                    }
+
+                    return null;
                 }
 
                 binding = this.bindings[abstractType];
@@ -344,7 +409,7 @@ namespace WillPe.Utils
 
             return binding.GetInstance(constructorParameterTypes, constructorParameters);
         }
-
+        
         private void RemoveBinding(Type abstractType)
         {
             this.log.ClearBinding(abstractType.Name);

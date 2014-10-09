@@ -56,6 +56,21 @@ namespace WillPe.Utils
             var dirInfo = ServiceRegistry.Instance.Get<DirectoryInfo>("c:\\");
             Console.WriteLine("dirInfo.FullName: {0}", dirInfo.FullName);
 
+            // Return null if there is no binding for the requested abstract type
+            var nothing = ServiceRegistry.Find<FileInfo>();
+            Console.WriteLine("fileInfo is {0}", nothing == null ? "null" : "not null");
+            
+            // Use the TryGet pattern to determine if a binding exists
+            StreamReader reader
+            if (ServiceRegistry.TryGet<StreamReader>(out reader))
+            {
+                Console.WriteLine("reader is a {0}", reader.GetType().Name);
+            }
+            else
+            {
+                Console.WriteLine("No binding for 'StreamReader'");
+            }
+
             // Event Source
             var consoleListener = new ConsoleEventListener();
             consoleListener.EnableEvents(ServiceRegistry.Instance.Log, EventLevel.LogAlways);
