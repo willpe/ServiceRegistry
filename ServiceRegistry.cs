@@ -225,7 +225,7 @@ namespace WillPe.Utils
             }
 
             value = this.Get(abstractType, argTypes, args, throwOnError: false);
-            return value == null;
+            return value != null;
         }
 
         public void Init(XmlElement configuration)
